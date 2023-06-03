@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const user = require("../controller/users.js")
+const mu = require("../middleware/user")
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/login', mu.validateLoginBody ,user.Login);
+router.post('/register', mu.validateRegisterBody , user.Register);
 
 module.exports = router;

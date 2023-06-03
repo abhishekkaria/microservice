@@ -1,25 +1,21 @@
 const mongoose = require("mongoose");
 
-const DogSchema = new mongoose.Schema({
-  name: {
+const UserSchema = new mongoose.Schema({
+  username: {
     type: String,
     required: true,
   },
-  breed: {
+  email: {
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
+  password: {
+    type: String,
     required: true,
-  },
-  isGoodBoy: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
+  }
 });
 
-const Dog = mongoose.model("Dog", DogSchema);
+// const User = mongoose.model("User", UserSchema);
+// module.exports = mongoose.model('user', user);
 
-module.exports = { Dog };
+module.exports = mongoose.model("User", UserSchema);

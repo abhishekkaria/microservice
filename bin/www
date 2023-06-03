@@ -30,7 +30,7 @@ var server = http.createServer(app);
 const start = async () => {
   try {
     await mongoose.connect(
-      "mongodb://root:root@localhost:27017/mongoose?authSource=admin"
+      "mongodb://localhost:27017/mongoose"
     );
     // app.listen(3000, () => console.log("Server started on port 3000"));
     server.listen(port, () => console.log("Server started on port 3000"));
