@@ -1,16 +1,12 @@
 const User = require("../models/user")
 const utils = require("./utils")
 
-const bcrypt = require("bcrypt")
-const saltRounds = 10
-
-async function Login (req,res){        
-    const user = await User.findOne({});
-    res.json({"users":user})
+async function Login (req,res){      
+    const user = await User.findOne({email:req.body.email,password : await utils.hashPassword(req.body.password)})    
+    res.json({"user":user})
 }
 
-async function Register(req,res){
-       
+async function Register(req,res){       
     const user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -18,8 +14,8 @@ async function Register(req,res){
     })
 
     await user.save()
-
+    res.status(201)
     res.json({"success":"true"})
 }
 
-module.exports = { Login , Register }
+module.exports = { Login , Register}
