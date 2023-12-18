@@ -4,7 +4,9 @@ services:
   database:
     image: mongo:4.0.16-xenial
     ports:
-      - 27017:27017    
+      - 27017:27017
+    volumes:
+      - database_data:/data/db  # Add this line to create a named volume 
   auth:
     build: .
     depends_on:
@@ -13,3 +15,6 @@ services:
       - 3000:3000    
     environment:
       - DB_URL=mongodb://database:27017
+
+volumes:  # Define the named volumes here
+  database_data:
